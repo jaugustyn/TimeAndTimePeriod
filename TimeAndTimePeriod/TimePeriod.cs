@@ -50,11 +50,21 @@ namespace TimeAndTimePeriod
 
         public static TimePeriod operator +(TimePeriod tp1, TimePeriod tp2) => new TimePeriod(tp1.Time + tp2.Time);
         public TimePeriod Plus(TimePeriod tp2) => this + tp2;
+        public static TimePeriod Plus(Time t1, Time t2) => new TimePeriod(t1.ToString()) + new TimePeriod(t2.ToString());
         public static TimePeriod operator -(TimePeriod tp1, TimePeriod tp2)
         {
             var newTimeInSeconds = tp1.Time - tp2.Time;
             return newTimeInSeconds <= 0 ? new TimePeriod() : new TimePeriod(newTimeInSeconds);
         }
         public TimePeriod Minus(TimePeriod tp2) => this - tp2;
+
+        public static TimePeriod Minus(Time t1, Time t2)
+        {
+            if (t1 > t2)
+            {
+                return new TimePeriod(t1.ToString()) - new TimePeriod(t2.ToString());
+            }
+            return new TimePeriod(t2.ToString()) - new TimePeriod(t1.ToString());
+        }
     }
 }
